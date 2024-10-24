@@ -1,0 +1,30 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #d5c3b7;
+  padding: 10px;
+  position: relative;
+}
+
+.left-icons,
+.right-icons {
+  display: flex;
+  gap: 10px;
+}
+
+.center-icon {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.navbar img {
+  width: 40px;
+  height: auto;
+  cursor: pointer;
+}
+
+.navbar img[alt="Logo"] {
+  width: 96px;
+}

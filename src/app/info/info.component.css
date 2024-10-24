@@ -1,0 +1,102 @@
+* {
+    font-family: 'Futura Condensed Medium', sans-serif;
+  }
+  
+  .page-container {
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .back-button {
+    display: flex;
+    align-items: center;
+    color: #a02931;
+    cursor: pointer;
+  }
+  
+  .back-symbol {
+    font-size: 24px;
+  }
+  
+  .back-text {
+    font-size: 23px;
+    text-decoration: underline;
+    margin-left: 5px;
+  }
+  
+  .title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .page-icon {
+    width: 40px;
+    filter: drop-shadow(0.7px 0.7px 0px black);
+  }
+  
+  .page-title {
+    color: #a02931;
+    font-size: 35px;
+    margin-left: 10px;
+    filter: drop-shadow(0.5px 0.5px 0px black);
+  }
+  
+  .location-container {
+    margin-top: 20px;
+  }
+  
+  .location-icon {
+    width: 30px;
+    filter: drop-shadow(0.7px 0.7px 0px black);
+  }
+  
+  .address-line {
+    font-size: 23px;
+    text-decoration: underline;
+    color: black;
+    margin: 4px 0;
+  }
+  
+  .phone-container {
+    margin-top: 30px;
+  }
+  
+  .phone-icon {
+    width: 30px;
+    filter: drop-shadow(0.7px 0.7px 0px black);
+    margin-bottom: 7px;
+  }
+  
+  .phone-number {
+    font-size: 23px;
+    margin: 4px 0;
+  }
+  
+  .whatsapp-button-container {
+    margin-top: 17px;
+    text-align: center;
+  }
+  
+  .whatsapp-button {
+    display: inline-flex;
+    align-items: center;
+    background-color: #4b6e3e;
+    border-radius: 8px;
+    padding: 5px 10px;
+    filter: drop-shadow(0.3px 0.3px 0px black);
+    justify-content: center;
+    margin-top: 8px;
+  }
+  
+  .whatsapp-icon {
+    width: 30px;
+    margin-right: 5px;
+  }
+  
+  .whatsapp-text {
+    font-size: 23px;
+    color: #e3dfc6;
+  }
+  

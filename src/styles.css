@@ -1,0 +1,19 @@
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(to bottom, #d5c3b7, #7baabe);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+@font-face {
+  font-family: 'Futura Condensed Medium';
+  src: url('./assets/fonts/FuturaCondensedMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Futura Condensed Medium', sans-serif;
+  letter-spacing: 0.6px;
+}
