@@ -9,7 +9,7 @@ describe('CadastroComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormsModule], // Import FormsModule para permitir o uso de ngModel
+      imports: [FormsModule],
       declarations: [CadastroComponent]
     }).compileComponents();
   });

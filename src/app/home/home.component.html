@@ -1,1 +1,38 @@
-<p>home works!</p>
+<body>
+  <div class="background-container"></div>
+
+  <div class="home-container">
+    <div class="slogan">
+      <p>
+        <span class="linha1">Criatividade e sabor</span><br />
+        <span class="linha2">em perfeita</span><br />
+        <span class="linha3">harmonia</span>
+      </p>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="logo-container">
+        <img src="assets/icons/viacupcakelogo.svg" alt="Via Cupcake Logo" class="logo" />
+      </div>
+      <div class="imagem-cupcakes-container">
+        <img src="assets/images/cupcakes.png" alt="Cupcakes" class="imagem-cupcakes" />
+      </div>
+    </div>
+
+    <div class="menu-container">
+      <div *ngFor="let sabor of sabores" class="flavor-card">
+        <img [src]="sabor.imagem" alt="{{ sabor.titulo }}" class="flavor-image" />
+        <h3 class="flavor-title">{{ sabor.titulo }}</h3>
+        <p class="flavor-price">R$ {{ sabor.preco | number:'1.2-2' }}</p>
+        
+        <div class="quantity-control">
+          <button class="quantity-btn quantity-minus" (click)="diminuirQuantidade(sabor.id)">-</button>
+          <span class="quantity-number">{{ obterQuantidade(sabor.id) }}</span>
+          <button class="quantity-btn quantity-plus" (click)="aumentarQuantidade(sabor.id)">+</button>
+        </div>
+        
+        <button type="submit" class="add-to-cart-button" (click)="adicionarAoCarrinho(sabor.id, obterQuantidade(sabor.id))">Adicionar ao Carrinho</button>
+      </div>
+    </div>
+  </div>
+</body>
