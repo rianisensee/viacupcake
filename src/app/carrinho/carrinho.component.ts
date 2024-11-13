@@ -4,6 +4,7 @@ import { Sabor } from '../models/sabor.model';
 import { Location } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { CarrinhoService } from '../services/carrinho.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-carrinho',
@@ -17,7 +18,12 @@ export class CarrinhoComponent {
   quantidades: { [key: number]: number } = {};
   selectedDeliveryMethod: string | null = null;
 
-  constructor(private location: Location,private saborService: SaborService, private carrinhoService: CarrinhoService) {}
+  constructor(
+    private location: Location, 
+    private saborService: SaborService, 
+    private carrinhoService: CarrinhoService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.sabores = this.saborService.getSabores();
@@ -49,6 +55,10 @@ export class CarrinhoComponent {
   }
 
   selecionarFormaDeEntrega(metodo: string): void {
-        this.selectedDeliveryMethod = metodo;
+    this.selectedDeliveryMethod = metodo;
+  }
+
+  finalizarCompra(): void {
+    this.router.navigate(['/compra']);
   }
 }

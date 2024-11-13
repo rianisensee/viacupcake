@@ -201,7 +201,7 @@ body, html {
     right: 6px;
 }
 
-  .quantity-control {
+.quantity-control {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -213,7 +213,7 @@ body, html {
 
   @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@700&display=swap');
 
-  .quantity-btn {
+.quantity-btn {
     font-family: 'Fira Code', monospace;
     font-weight: bold;
     font-size: 27px;
@@ -247,7 +247,7 @@ body, html {
 
 .subtotal-price {
     font-family: 'Futura Condensed Medium', sans-serif;
-    font-size: 26px;
+    font-size: 23px;
     color: black;
     text-align: right;
     margin-left: 35px;
@@ -274,9 +274,7 @@ body, html {
     font-size: 27px;
     color: black;
     display: flex;
-    flex-direction: row;
-    justify-content: start;
-    align-items: center;
+    flex-direction: column;
     width: 100%;
     border: 3px solid #d5ae79;
     border-radius: 12px;
@@ -298,9 +296,13 @@ body, html {
     z-index: -1;
 }
 
-
 .delivery-method-card.selected {
     border-color: #f3cb97;
+}
+
+.radio-label-container {
+    display: flex;
+    align-items: center;
 }
 
 .delivery-radio {
@@ -348,5 +350,73 @@ body, html {
     border: 2px solid #d5ae79;
     border-radius: 6px;
     box-shadow: 1px 1px 0px #c1945c;
+    margin-right: 25px;
 }
 
+.additional-info-container {
+    display: flex;
+    align-items: center;
+}
+
+.additional-info-container label {
+    margin-right: 8px;
+    padding-bottom: 10px;
+}
+
+.additional-info-input {
+    flex: 1;
+    margin-right: 25px;
+}
+
+.delivery-price {
+    font-family: 'Futura Condensed Medium', sans-serif;
+    font-size: 23px;
+    color: black;
+    text-align: right;
+    margin-left: 35px;
+    background-color: rgba(227, 223, 198, 0.5);
+    border-radius: 8px;
+    padding: 5px 14px;
+    display: inline-block;
+    margin-right: 0px;
+    margin-left: auto;
+    margin-bottom: 50px;
+}
+
+.fixed-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #7baabe;
+    padding: 10px;
+    box-sizing: border-box;
+    z-index: 1000;
+}
+
+.total-price {
+    font-family: 'Futura Condensed Medium', sans-serif;
+    font-size: 27px;
+    color: black;
+    text-align: center;
+    background-color: rgba(227, 223, 198, 0.5);
+    border-radius: 8px;
+    padding: 5px 14px;
+    flex: 1;
+}
+
+.finalize-button {
+    font-family: 'Futura Condensed Medium', sans-serif;
+    background-color: #873f36;
+    color: #e3dfc6;
+    padding: 5px 14px;
+    font-size: 27px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-left: 10px;
+    flex: 1;
+    filter: drop-shadow(1.4px 1.4px 0px black);
+}

@@ -42,28 +42,38 @@
             </div>
             
             <div class="delivery-method-card" 
-                 [ngClass]="{'selected': selectedDeliveryMethod === 'retirar'}">
-                <input type="radio" id="retirar" name="delivery" value="retirar" class="delivery-radio"
-                       (click)="selecionarFormaDeEntrega('retirar')">
-                <label for="retirar">Retirar na loja</label>
+               [ngClass]="{'selected': selectedDeliveryMethod === 'retirar'}">
+              <div class="radio-label-container">
+              <input type="radio" id="retirar" name="delivery" value="retirar" class="delivery-radio"
+               (click)="selecionarFormaDeEntrega('retirar')">
+              <label for="retirar">Retirar na loja</label>
+              </div>
             </div>
-            
             <div class="delivery-method-card" 
-                 [ngClass]="{'selected': selectedDeliveryMethod === 'receber'}">
-                <input type="radio" id="receber" name="delivery" value="receber" class="delivery-radio"
-                       (click)="selecionarFormaDeEntrega('receber')">
-                <label for="receber">Receber em casa</label>
-                <div *ngIf="selectedDeliveryMethod === 'receber'" class="address-form">
-                    <label for="endereco">Endereço:</label>
-                    <input type="text" id="endereco" name="endereco" class="address-input">
-                    
-                    <label for="complemento">Complemento:</label>
-                    <input type="text" id="complemento" name="complemento" class="address-input">
-                </div>
+              [ngClass]="{'selected': selectedDeliveryMethod === 'receber'}">
+            <div class="radio-label-container">
+            <input type="radio" id="receber" name="delivery" value="receber" class="delivery-radio"
+               (click)="selecionarFormaDeEntrega('receber')">
+            <label for="receber">Receber em casa</label>
             </div>
-            
-            <div class="subtotal-price">
+            <div *ngIf="selectedDeliveryMethod === 'receber'" class="address-form">
+            <label for="endereco">Endereço:</label>
+            <input type="text" id="endereco" name="endereco" class="address-input">
+
+            <div class="additional-info-container">
+              <label for="additional-info">Complemento:</label>
+              <input type="text" id="additional-info" name="additional-info" class="address-input additional-info-input">
+            </div>
+            </div>
+            </div> 
+            <div class="delivery-price">
                 <p>Taxa de entrega: R$ 11,90</p>
-            </div>          
+            </div>
+            <div class="fixed-footer">
+              <div class="total-price">
+                  <p>Total: R$ 43,20</p>
+              </div>
+              <button type="submit" class="finalize-button" (click)="finalizarCompra()">Finalizar compra</button>
+          </div>        
         </div>
 </body>
