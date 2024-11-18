@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-conta',
@@ -8,5 +9,10 @@ import { Component } from '@angular/core';
   styleUrl: './conta.component.css'
 })
 export class ContaComponent {
+  constructor(private location: Location) {}
+
+  goBack(): void {
+    this.location.back();
+  }
 
 }

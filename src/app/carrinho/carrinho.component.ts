@@ -13,10 +13,11 @@ import { Router } from '@angular/router';
   templateUrl: './carrinho.component.html',
   styleUrls: ['./carrinho.component.css']
 })
-export class CarrinhoComponent {
+export class CarrinhoComponent implements OnInit {
   sabores: Sabor[] = [];
   quantidades: { [key: number]: number } = {};
   selectedDeliveryMethod: string | null = null;
+  itensCarrinho: any[] = [];
 
   constructor(
     private location: Location, 
@@ -26,28 +27,28 @@ export class CarrinhoComponent {
   ) {}
 
   ngOnInit(): void {
-    this.sabores = this.saborService.getSabores();
-    this.sabores.forEach(sabor => {
-      this.quantidades[sabor.id] = 1;
-    });
-  }
-
-  adicionarAoCarrinho(saborId: number, quantidade: number): void {
-    this.carrinhoService.adicionarAoCarrinho(saborId, quantidade);
+    this.itensCarrinho = this.carrinhoService.obterItensCarrinho();
   }
 
   aumentarQuantidade(saborId: number): void {
-    this.quantidades[saborId] += 1;
-  }
-
-  diminuirQuantidade(saborId: number): void {
-    if (this.quantidades[saborId] > 1) {
-      this.quantidades[saborId] -= 1;
+    const item = this.itensCarrinho.find(i => i.saborId === saborId);
+    if (item) {
+      this.carrinhoService.atualizarQuantidade(saborId, item.quantidade + 1);
+      this.itensCarrinho = this.carrinhoService.obterItensCarrinho();
     }
   }
 
-  obterQuantidade(saborId: number): number {
-    return this.quantidades[saborId] || 1;
+  diminuirQuantidade(saborId: number): void {
+    const item = this.itensCarrinho.find(i => i.saborId === saborId);
+    if (item && item.quantidade > 1) {
+      this.carrinhoService.atualizarQuantidade(saborId, item.quantidade - 1);
+      this.itensCarrinho = this.carrinhoService.obterItensCarrinho();
+    }
+  }
+
+  removerDoCarrinho(saborId: number): void {
+    this.carrinhoService.removerDoCarrinho(saborId);
+    this.itensCarrinho = this.carrinhoService.obterItensCarrinho();
   }
 
   goBack(): void {
@@ -61,4 +62,6 @@ export class CarrinhoComponent {
   finalizarCompra(): void {
     this.router.navigate(['/compra']);
   }
+
+
 }

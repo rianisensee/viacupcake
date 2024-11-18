@@ -1,1 +1,44 @@
-<p>compra works!</p>
+<div class="background-container"></div>
+<div class="head-container">
+    <div class="back-button" (click)="goBack()">
+        <span class="back-symbol">&#8592;</span> 
+        <span class="back-text">Voltar</span>
+    </div>
+    <h2 class="order-title">Pedido:</h2>
+    <h2 class="order-title">Método de pagamento:</h2>
+    <div class="payment-method-card" [ngClass]="{'selected': selectedPaymentMethod === 'retirar'}">
+        <div class="radio-label-container">
+            <input type="radio" id="retirar" name="delivery" value="retirar" class="payment-radio" (click)="selecionarFormaDePagamento('retirar')">
+            <label for="retirar">Pix</label>
+        </div>
+    </div>
+    <div class="payment-method-card" [ngClass]="{'selected': selectedPaymentMethod === 'receber'}">
+        <div class="radio-label-container">
+            <input type="radio" id="receber" name="delivery" value="receber" class="payment-radio" (click)="selecionarFormaDePagamento('receber')">
+            <label for="receber">Cartão de crédito</label>
+        </div>
+        <div *ngIf="selectedPaymentMethod === 'receber'" class="credit-cart-form">
+            <div class="form-row">
+                <div class="form-group numero-cartao">
+                    <label for="numero-cartao">Número do cartão</label>
+                    <input type="text" id="numero-cartao" name="numero-cartao" class="credit-cart-form-input">
+                </div>
+                <div class="form-group data-vencimento">
+                    <label for="data-vencimento">Data de vencimento</label>
+                    <input type="text" id="data-vencimento" name="data-vencimento" class="credit-cart-form-input">
+                </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group nome-cartao">
+                        <label for="nome-cartao">Nome impresso no cartão</label>
+                        <input type="text" id="nome-cartao" name="nome-cartao" class="credit-cart-form-input">
+                    </div>
+                    <div class="form-group cvv">
+                        <label for="cvv">CVV</label>
+                        <input type="text" id="cvv" name="cvv" class="credit-cart-form-input">
+                    </div>
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="finalize-button" (click)="finalizarPedido()">Finalizar pedido</button>
+</div>

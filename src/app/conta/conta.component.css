@@ -1,0 +1,70 @@
+* {
+    font-family: 'Futura Condensed Medium', sans-serif;
+  }
+  
+  .page-container {
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .back-button {
+    display: flex;
+    align-items: center;
+    color: #a02931;
+    cursor: pointer;
+  }
+  
+  .back-symbol {
+    font-size: 24px;
+  }
+  
+  .back-text {
+    font-size: 23px;
+    text-decoration: underline;
+    margin-left: 5px;
+  }
+  
+  .title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .page-icon {
+    width: 40px;
+    filter: drop-shadow(0.7px 0.7px 0px black);
+  }
+  
+  .page-title {
+    color: #a02931;
+    font-size: 35px;
+    margin-left: 10px;
+    filter: drop-shadow(0.5px 0.5px 0px black);
+  }
+
+  .edit-button {
+    background-color: #873f36;
+    color: #e3dfc6;
+    padding: 7px 13px;
+    font-size: 23px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 25px;
+    margin-bottom: 35px;
+    filter: drop-shadow(1.4px 1.4px 0px black);
+  }
+
+  .exit-button {
+    background-color: #a02931;
+    color: #e3dfc6;
+    padding: 7px 13px;
+    font-size: 28px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 25px;
+    margin-bottom: 35px;
+    filter: drop-shadow(1.4px 1.4px 0px black);
+  }

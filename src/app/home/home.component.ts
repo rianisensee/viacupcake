@@ -12,7 +12,7 @@ import { CarrinhoService } from '../services/carrinho.service';
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit {
-  sabores: Sabor[] = [];
+  sabores: any[] = [];
   quantidades: { [key: number]: number } = {};
 
   constructor(private saborService: SaborService, private carrinhoService: CarrinhoService) {}
@@ -26,19 +26,26 @@ export class HomeComponent implements OnInit {
 
   adicionarAoCarrinho(saborId: number, quantidade: number): void {
     this.carrinhoService.adicionarAoCarrinho(saborId, quantidade);
-  }
-
-  aumentarQuantidade(saborId: number): void {
-    this.quantidades[saborId] += 1;
-  }
-
-  diminuirQuantidade(saborId: number): void {
-    if (this.quantidades[saborId] > 1) {
-      this.quantidades[saborId] -= 1;
-    }
+    this.resetQuantidades();
   }
 
   obterQuantidade(saborId: number): number {
     return this.quantidades[saborId] || 1;
+  }
+
+  aumentarQuantidade(saborId: number): void {
+    this.quantidades[saborId]++;
+  }
+
+  diminuirQuantidade(saborId: number): void {
+    if (this.quantidades[saborId] > 1) {
+      this.quantidades[saborId]--;
+    }
+  }
+
+  private resetQuantidades(): void {
+    this.sabores.forEach(sabor => {
+      this.quantidades[sabor.id] = 1;
+    });
   }
 }

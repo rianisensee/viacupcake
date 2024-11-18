@@ -1,72 +1,80 @@
 import { Injectable } from '@angular/core';
 import { SaborService } from './sabor.service';
-import { Carrinho, CarrinhoItem } from '../models/carrinho.model';
+
+interface ItemCarrinho {
+  saborId: number;
+  quantidade: number;
+}
+
+interface Sabor {
+  id: number;
+  titulo: string;
+  preco: number;
+  imagem: string;
+}
 
 @Injectable({
   providedIn: 'root'
-})
-export class CarrinhoService {
-  private carrinho: Carrinho = { itens: [] };
-
-  constructor(private saborService: SaborService) {}
-
-  // Método para adicionar um item ao carrinho
-  adicionarAoCarrinho(saborId: number, quantidade: number): void {
-    // Verifica se o item já está no carrinho
-    const itemExistente = this.carrinho.itens.find(item => item.saborId === saborId);
-    
-    if (itemExistente) {
-      itemExistente.quantidade += quantidade;
-    } else {
-      // Adiciona um novo item ao carrinho
-      this.carrinho.itens.push({ saborId, quantidade });
-    }
-  }
-
-  // Método para remover um item do carrinho
-  removerDoCarrinho(saborId: number): void {
-    this.carrinho.itens = this.carrinho.itens.filter(item => item.saborId !== saborId);
-  }
-
-  // Método para atualizar a quantidade de um item no carrinho
-  atualizarQuantidade(saborId: number, quantidade: number): void {
-    const itemExistente = this.carrinho.itens.find(item => item.saborId === saborId);
-
-    if (itemExistente) {
-      if (quantidade <= 0) {
-        this.removerDoCarrinho(saborId);  // Se a quantidade for 0 ou negativa, remove o item
-      } else {
-        itemExistente.quantidade = quantidade;
-      }
-    }
-  }
-
-  // Método para obter todos os itens do carrinho com as informações do sabor
-  obterItensCarrinho(): any[] {
-    return this.carrinho.itens.map(item => {
-      const sabor = this.saborService.getSaborById(item.saborId);
-      return {
-        ...item,
-        titulo: sabor.titulo,
-        preco: sabor.preco
-      };
-    });
-  }
-
-  // Método para calcular o preço total do carrinho
-  calcularTotalCarrinho(): number {
-    return this.carrinho.itens.reduce((total, item) => {
-      const sabor = this.saborService.getSaborById(item.saborId);
-      return total + (sabor.preco * item.quantidade);
-    }, 0);
-  }
-  
-  obterTotalItens(): number {
-    return this.carrinho.itens.reduce((total, item) => total + item.quantidade, 0);
-  }
-
-  // Método para limpar o carrinho (remover todos os itens)
-  limparCarrinho(): void {
-    this.carrinho.itens = [];
-  }
-}
+ })
+ export class CarrinhoService {
+   private storageKey = 'itensCarrinho';
+ 
+   constructor(private saborService: SaborService) {}
+ 
+   obterItensCarrinho(): any[] {
+     const itens = localStorage.getItem(this.storageKey);
+     const itensCarrinho: ItemCarrinho[] = itens ? JSON.parse(itens) : [];
+ 
+     return itensCarrinho.map((item: ItemCarrinho) => {
+       const sabor: Sabor = this.saborService.getSaborById(item.saborId);
+       return {
+         ...item,
+         titulo: sabor.titulo,
+         preco: sabor.preco,
+         imagem: sabor.imagem
+       };
+     });
+   }
+ 
+   adicionarAoCarrinho(saborId: number, quantidade: number): void {
+     const itens = this.obterItensCarrinho();
+     const itemExistente = itens.find(item => item.saborId === saborId);
+   
+     if (itemExistente) {
+       itemExistente.quantidade += quantidade;
+     } else {
+       itens.push({ saborId, quantidade });
+     }
+   
+     localStorage.setItem(this.storageKey, JSON.stringify(itens));
+   }
+ 
+   atualizarQuantidade(saborId: number, quantidade: number): void {
+     const itens = this.obterItensCarrinho();
+     const item = itens.find(i => i.saborId === saborId);
+     if (item) {
+       item.quantidade = quantidade;
+       localStorage.setItem(this.storageKey, JSON.stringify(itens));
+     }
+   }
+ 
+   removerDoCarrinho(saborId: number): void {
+     let itens = this.obterItensCarrinho();
+     itens = itens.filter(i => i.saborId !== saborId);
+     localStorage.setItem(this.storageKey, JSON.stringify(itens));
+   }
+ 
+   calcularTotalCarrinho(): number {
+     const itens = this.obterItensCarrinho();
+     return itens.reduce((total, item) => total + item.preco * item.quantidade, 0);
+   }
+ 
+   limparCarrinho(): void {
+     localStorage.removeItem(this.storageKey);
+   }
+ 
+   obterTotalItens(): number {
+     const itens = this.obterItensCarrinho();
+     return itens.reduce((total, item) => total + item.quantidade, 0);
+   }
+ }

@@ -6,34 +6,34 @@
             <span class="back-text">Voltar</span>
           </div>
         <div class="title-container">
-            <img src="assets/icons/cart.svg" alt="Message Icon" class="page-icon" />
+            <img src="assets/icons/cart.svg" alt="Cart Icon" class="page-icon" />
             <h1 class="page-title">Carrinho</h1>
           </div>
     </div>
         <div class="carrinho-container">
-            <div *ngFor="let sabor of sabores" class="flavor-card">
-                <div class="flavor-image-container">
-                  <img [src]="sabor.imagem" alt="{{ sabor.titulo }}" class="flavor-image" />
-                </div>
-              
-                <div class="flavor-info-container">
-                    <h3 class="flavor-title">{{ sabor.titulo }}</h3>
-                    <p class="flavor-price">R$ {{ sabor.preco | number:'1.2-2' }}</p>
-                    <div class="quantity-price-container">
-                        <p class="quantity-multiplier">20x</p>
-                        <p class="flavor-total-price">R$ {{ sabor.preco | number:'1.2-2' }}</p>
-                    </div>
-                </div>                
-
-                <div class="flavor-action-container">
-                  <div class="quantity-control">
-                    <button class="quantity-btn quantity-minus" (click)="diminuirQuantidade(sabor.id)">-</button>
-                    <span class="quantity-number">{{ obterQuantidade(sabor.id) }}</span>
-                    <button class="quantity-btn quantity-plus" (click)="aumentarQuantidade(sabor.id)">+</button>
-                  </div>
-                  <button type="submit" class="remove-from-cart-button" (click)="adicionarAoCarrinho(sabor.id, obterQuantidade(sabor.id))">Remover</button>
-                </div>
+          <div *ngFor="let item of itensCarrinho" class="flavor-card">
+            <div class="flavor-image-container">
+              <img [src]="item.imagem" alt="{{ item.titulo }}" class="flavor-image" />
+            </div>
+          
+            <div class="flavor-info-container">
+              <h3 class="flavor-title">{{ item.titulo }}</h3>
+              <p class="flavor-price">R$ {{ item.preco | number:'1.2-2' }}</p>
+              <div class="quantity-price-container">
+                <p class="quantity-multiplier">{{ item.quantidade }}x</p>
+                <p class="flavor-total-price">R$ {{ item.preco * item.quantidade | number:'1.2-2' }}</p>
               </div>
+            </div>
+          
+            <div class="flavor-action-container">
+              <div class="quantity-control">
+                <button class="quantity-btn quantity-minus" (click)="diminuirQuantidade(item.saborId)">-</button>
+                <span class="quantity-number">{{ item.quantidade }}</span>
+                <button class="quantity-btn quantity-plus" (click)="aumentarQuantidade(item.saborId)">+</button>
+              </div>
+              <button type="submit" class="remove-from-cart-button" (click)="removerDoCarrinho(item.saborId)">Remover</button>
+            </div>
+          </div>
             <div class="subtotal-price">
                 <p>Subtotal: R$ 31,30</p>
             </div>
