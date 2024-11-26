@@ -2,78 +2,86 @@
     <div class="background-container"></div>
     <div class="head-container">
         <div class="back-button" (click)="goBack()">
-            <span class="back-symbol">&#8592;</span> 
+            <span class="back-symbol">&#8592;</span>
             <span class="back-text">Voltar</span>
-          </div>
+        </div>
         <div class="title-container">
             <img src="assets/icons/cart.svg" alt="Cart Icon" class="page-icon" />
             <h1 class="page-title">Carrinho</h1>
-          </div>
+        </div>
     </div>
-        <div class="carrinho-container">
-          <div *ngFor="let item of itensCarrinho" class="flavor-card">
-            <div class="flavor-image-container">
-              <img [src]="item.imagem" alt="{{ item.titulo }}" class="flavor-image" />
-            </div>
-          
-            <div class="flavor-info-container">
-              <h3 class="flavor-title">{{ item.titulo }}</h3>
-              <p class="flavor-price">R$ {{ item.preco | number:'1.2-2' }}</p>
-              <div class="quantity-price-container">
-                <p class="quantity-multiplier">{{ item.quantidade }}x</p>
-                <p class="flavor-total-price">R$ {{ item.preco * item.quantidade | number:'1.2-2' }}</p>
-              </div>
-            </div>
-          
-            <div class="flavor-action-container">
-              <div class="quantity-control">
-                <button class="quantity-btn quantity-minus" (click)="diminuirQuantidade(item.saborId)">-</button>
-                <span class="quantity-number">{{ item.quantidade }}</span>
-                <button class="quantity-btn quantity-plus" (click)="aumentarQuantidade(item.saborId)">+</button>
-              </div>
-              <button type="submit" class="remove-from-cart-button" (click)="removerDoCarrinho(item.saborId)">Remover</button>
-            </div>
-          </div>
+    <div>
+        <div *ngIf="itensCarrinho.length === 0" class="empty-cart-message">
+            <p>Seu carrinho está vazio. <br><a href="/" class="home-link">Clique aqui para adicionar cupcakes</a>.</p>
+        </div>
+        <div *ngIf="itensCarrinho.length > 0" class="carrinho-container">
+            <ng-container *ngFor="let item of itensCarrinho">
+                <div class="flavor-card">
+                    <div class="flavor-image-container">
+                        <img [src]="item.imagem" alt="{{ item.titulo }}" class="flavor-image" />
+                    </div>
+                    <div class="flavor-info-container">
+                        <h3 class="flavor-title">{{ item.titulo }}</h3>
+                        <p class="flavor-price">R$ {{ item.preco | number:'1.2-2' }}</p>
+                        <div class="quantity-price-container">
+                            <div class="quantity-multiplier-container" *ngIf="item.quantidade > 1">
+                                <p class="quantity-multiplier">{{ item.quantidade }}x</p>
+                            </div>
+                            <p class="flavor-total-price" *ngIf="item.quantidade > 1">R$ {{ item.preco * item.quantidade
+                                | number:'1.2-2' }}</p>
+                        </div>
+                    </div>
+                    <div class="flavor-action-container">
+                        <div class="quantity-control">
+                            <button class="quantity-btn quantity-minus"
+                                (click)="diminuirQuantidade(item.saborId)">-</button>
+                            <span class="quantity-number">{{ item.quantidade }}</span>
+                            <button class="quantity-btn quantity-plus"
+                                (click)="aumentarQuantidade(item.saborId)">+</button>
+                        </div>
+                        <button type="submit" class="remove-from-cart-button"
+                            (click)="removerDoCarrinho(item.saborId)">Remover</button>
+                    </div>
+                </div>
+            </ng-container>
             <div class="subtotal-price">
-                <p>Subtotal: R$ 31,30</p>
+                <p>Subtotal: R$ {{ subtotal | number:'1.2-2' }}</p>
             </div>
             <div class="delivery-method-container">
                 <h2 class="delivery-method-title">Forma de entrega:</h2>
             </div>
-            
-            <div class="delivery-method-card" 
-               [ngClass]="{'selected': selectedDeliveryMethod === 'retirar'}">
-              <div class="radio-label-container">
-              <input type="radio" id="retirar" name="delivery" value="retirar" class="delivery-radio"
-               (click)="selecionarFormaDeEntrega('retirar')">
-              <label for="retirar">Retirar na loja</label>
-              </div>
+            <div class="delivery-method-card" [ngClass]="{'selected': selectedDeliveryMethod === 'retirar'}" (click)="selecionarFormaDeEntrega('retirar')">
+                <div class="radio-label-container">
+                    <input type="radio" id="retirar" name="delivery" value="retirar" class="delivery-radio"
+                        (click)="selecionarFormaDeEntrega('retirar')">
+                    <label for="retirar">Retirar na loja</label>
+                </div>
             </div>
-            <div class="delivery-method-card" 
-              [ngClass]="{'selected': selectedDeliveryMethod === 'receber'}">
-            <div class="radio-label-container">
-            <input type="radio" id="receber" name="delivery" value="receber" class="delivery-radio"
-               (click)="selecionarFormaDeEntrega('receber')">
-            <label for="receber">Receber em casa</label>
+            <div class="delivery-method-card" [ngClass]="{'selected': selectedDeliveryMethod === 'receber'}" (click)="selecionarFormaDeEntrega('receber')">
+                <div class="radio-label-container">
+                    <input type="radio" id="receber" name="delivery" value="receber" class="delivery-radio"
+                        (click)="selecionarFormaDeEntrega('receber')">
+                    <label for="receber">Receber em casa</label>
+                </div>
+                <div *ngIf="selectedDeliveryMethod === 'receber'" class="address-form">
+                    <label for="endereco">Endereço:</label>
+                    <input type="text" id="endereco" name="endereco" class="address-input">
+                    <div class="additional-info-container">
+                        <label for="additional-info">Complemento:</label>
+                        <input type="text" id="additional-info" name="additional-info"
+                            class="address-input additional-info-input">
+                    </div>
+                </div>
             </div>
-            <div *ngIf="selectedDeliveryMethod === 'receber'" class="address-form">
-            <label for="endereco">Endereço:</label>
-            <input type="text" id="endereco" name="endereco" class="address-input">
-
-            <div class="additional-info-container">
-              <label for="additional-info">Complemento:</label>
-              <input type="text" id="additional-info" name="additional-info" class="address-input additional-info-input">
-            </div>
-            </div>
-            </div> 
-            <div class="delivery-price">
+            <div *ngIf="selectedDeliveryMethod === 'receber'" class="delivery-price">
                 <p>Taxa de entrega: R$ 11,90</p>
             </div>
             <div class="fixed-footer">
-              <div class="total-price">
-                  <p>Total: R$ 43,20</p>
-              </div>
-              <button type="submit" class="finalize-button" (click)="finalizarCompra()">Finalizar compra</button>
-          </div>        
+                <div class="total-price">
+                    <p>Total: R$ 43,20</p>
+                </div>
+                <button type="submit" class="finalize-button" (click)="finalizarCompra()">Finalizar compra</button>
+            </div>
         </div>
+    </div>
 </body>

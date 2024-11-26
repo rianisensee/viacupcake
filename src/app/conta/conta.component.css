@@ -43,6 +43,40 @@
     filter: drop-shadow(0.5px 0.5px 0px black);
   }
 
+  .user-info {
+    margin-top: 25px;
+    display: flex;
+    margin-bottom: 20px;
+  }
+  
+  .user-info-column {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .left-column {
+    text-align: right;
+    margin-right: 5px;
+    flex: 0 0 27%;
+  }
+  
+  .right-column {
+    text-align: left;
+    flex: 1;
+  }
+  
+  .user-info-label {
+    color: #a02931;
+    margin-bottom: 10px;
+    font-size: 25px;
+  }
+  
+  .user-info-value {
+    color: black;
+    margin-bottom: 10px;
+    font-size: 25px;
+  }
+
   .edit-button {
     background-color: #873f36;
     color: #e3dfc6;
@@ -51,7 +85,6 @@
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    margin-top: 25px;
     margin-bottom: 35px;
     filter: drop-shadow(1.4px 1.4px 0px black);
   }
@@ -64,7 +97,6 @@
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    margin-top: 25px;
-    margin-bottom: 35px;
+    margin-top: 80px;
     filter: drop-shadow(1.4px 1.4px 0px black);
   }

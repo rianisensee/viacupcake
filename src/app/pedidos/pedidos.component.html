@@ -1,10 +1,86 @@
-<div class="page-container">
+<body>
+  <div class="background-container"></div>
+  <div class="head-container">
     <div class="back-button" (click)="goBack()">
-      <span class="back-symbol">&#8592;</span> 
+      <span class="back-symbol">&#8592;</span>
       <span class="back-text">Voltar</span>
     </div>
-  
     <div class="title-container">
       <img src="assets/icons/orders.svg" alt="Orders Icon" class="page-icon" />
       <h1 class="page-title">Meus Pedidos</h1>
     </div>
+  </div>
+  <div>
+    <div class="orders-container">
+      <div class="order-card">
+        <div class="order-header">
+          <div class="order-number">
+            <p>PEDIDO N° 02150424</p>
+          </div>
+          <div class="order-date">
+            <p class="order-date-label">Data: </p>
+            <p class="order-date-number">15/04/2024</p>
+          </div>
+        </div>
+        <div class="order-content">
+          <div class="order-details">
+            <div class="order-info">
+              <p><span class="label">Método de pagamento:</span></p>
+              <p>Cartão de crédito</p>
+              <p><span class="receipt-link">Ver recibo</span></p>
+            </div>
+            <div class="order-delivery">
+              <p><span class="label">Entrega:</span> R. Uruguai, 447 - Andaraí, Rio de Janeiro - RJ</p>
+            </div>
+          </div>
+          <div class="order-status-indicator">
+            <div class="circleupdate">
+              <img src="assets/icons/checkmark.svg" class="icon">
+            </div>
+            <div class="lineupdate"></div>
+            <div class="circleupdate">
+              <img src="assets/icons/checkmark.svg" class="icon">
+            </div>
+            <div class="line"></div>
+            <div class="circle"></div>
+            <div class="line"></div>
+            <div class="circle"></div>
+          </div>
+          <div class="order-status">
+            <div>
+              <p>Pedido recebido</p>
+            </div>
+            <div>
+              <p>Em preparação</p>
+            </div>
+            <div>
+              <p>Em trânsito</p>
+            </div>
+            <div>
+              <p>Concluído</p>
+            </div>
+          </div>
+        </div>
+        <div class="order-items">
+          <p>
+            <span class="item-quantity">2x</span>
+            <span class="item-name">Cupcake Red Velvet</span>
+            <span class="dotted-line"></span>
+            <span class="item-price">R$ 19,80</span>
+          </p>
+          <p>
+            <span class="item-quantity">1x</span>
+            <span class="item-name">Cupcake Chocolate Belga</span>
+            <span class="dotted-line"></span>
+            <span class="item-price">R$ 11,50</span>
+          </p>
+        </div>
+        <div class="order-total">
+          <p class="subtotal">R$ 31,30</p>
+          <p class="delivery-fee">Taxa de entrega: R$ 11,90</p>
+          <p class="total">Total: R$ 43,20</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap');
+
 * {
     font-family: 'Futura Condensed Medium', sans-serif;
     margin: 0;
@@ -5,7 +7,8 @@
     box-sizing: border-box;
 }
 
-body, html {
+body,
+html {
     height: 100%;
     overflow-y: scroll;
 }
@@ -13,7 +16,7 @@ body, html {
 .head-container {
     text-align: center;
     padding: 10px;
-  }
+}
 
 .background-container {
     position: fixed;
@@ -30,50 +33,47 @@ body, html {
     align-items: center;
     color: #a02931;
     cursor: pointer;
-  }
-  
-  .back-symbol {
+}
+
+.back-symbol {
     font-size: 24px;
-  }
-  
-  .back-text {
+}
+
+.back-text {
     font-size: 23px;
     text-decoration: underline;
     margin-left: 5px;
-  }
-  
-  .title-container {
+}
+
+.title-container {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 10px;
-  }
-  
-  .page-icon {
+}
+
+.page-icon {
     width: 40px;
     filter: drop-shadow(0.7px 0.7px 0px black);
-  }
-  
-  .page-title {
+}
+
+.page-title {
     color: #a02931;
     font-size: 35px;
     margin-left: 10px;
     filter: drop-shadow(0.5px 0.5px 0px black);
-  }
-
-.background-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
 }
 
-.mockup-image {
-    width: 100%;
-    height: auto;
-    margin-top: 230px;
+.empty-cart-message {
+    text-align: center;
+    margin-top: 100px;
+    font-size: 23px;
+}
+
+.home-link {
+    text-decoration: underline;
+    color: #a02931;
+    cursor: pointer;
 }
 
 .carrinho-container {
@@ -86,6 +86,7 @@ body, html {
     box-sizing: border-box;
     position: relative;
     z-index: 2;
+    margin-bottom: 55px;
 }
 
 .flavor-card {
@@ -135,7 +136,7 @@ body, html {
     align-items: flex-start;
     position: relative;
     margin-left: -20px;
-    margin-top: -20px;
+    margin-top: -25px;
 }
 
 .flavor-title {
@@ -151,8 +152,8 @@ body, html {
     font-size: 20px;
     color: black;
     text-align: left;
-    margin-top: 20px;
-    margin-left: 35px;
+    margin-top: 30px;
+    margin-left: 42px;
 }
 
 .quantity-price-container {
@@ -162,11 +163,18 @@ body, html {
     margin-top: 10px;
 }
 
+.quantity-multiplier-container {
+    position: relative;
+    width: 33px;
+    text-align: right;
+}
+
 .quantity-multiplier {
+    position: absolute;
+    right: 0;
     font-family: 'Futura Condensed Medium', sans-serif;
     font-size: 20px;
     color: black;
-    text-align: left;
 }
 
 .flavor-total-price {
@@ -175,7 +183,7 @@ body, html {
     color: black;
     text-align: right;
     position: absolute;
-    margin-left: 35px;
+    margin-left: 42px;
 }
 
 
@@ -212,7 +220,7 @@ body, html {
     right: 6px;
 }
 
-  @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@700&display=swap');
 
 .quantity-btn {
     font-family: 'Fira Code', monospace;

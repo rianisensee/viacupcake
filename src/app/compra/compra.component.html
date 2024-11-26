@@ -6,13 +6,13 @@
     </div>
     <h2 class="order-title">Pedido:</h2>
     <h2 class="order-title">Método de pagamento:</h2>
-    <div class="payment-method-card" [ngClass]="{'selected': selectedPaymentMethod === 'retirar'}">
+    <div class="payment-method-card" [ngClass]="{'selected': selectedPaymentMethod === 'retirar'}" (click)="selecionarFormaDePagamento('retirar')">
         <div class="radio-label-container">
             <input type="radio" id="retirar" name="delivery" value="retirar" class="payment-radio" (click)="selecionarFormaDePagamento('retirar')">
             <label for="retirar">Pix</label>
         </div>
     </div>
-    <div class="payment-method-card" [ngClass]="{'selected': selectedPaymentMethod === 'receber'}">
+    <div class="payment-method-card" [ngClass]="{'selected': selectedPaymentMethod === 'receber'}" (click)="selecionarFormaDePagamento('receber')">
         <div class="radio-label-container">
             <input type="radio" id="receber" name="delivery" value="receber" class="payment-radio" (click)="selecionarFormaDePagamento('receber')">
             <label for="receber">Cartão de crédito</label>

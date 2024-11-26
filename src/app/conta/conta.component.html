@@ -1,14 +1,38 @@
 <div class="page-container">
-    <div class="back-button" (click)="goBack()">
-      <span class="back-symbol">&#8592;</span> 
-      <span class="back-text">Voltar</span>
-    </div>
-  
-    <div class="title-container">
-      <img src="assets/icons/user.svg" alt="User Icon" class="page-icon" />
-      <h1 class="page-title">Minha Conta</h1>
-    </div>
+  <div class="back-button" (click)="goBack()">
+    <span class="back-symbol">&#8592;</span> 
+    <span class="back-text">Voltar</span>
+  </div>
 
-    <button type="submit" class="edit-button">Editar</button>
-    <button type="submit" class="edit-button">Alterar senha</button>
-    <button type="submit" class="exit-button">Sair</button>
+  <div class="title-container">
+    <img src="assets/icons/user.svg" alt="User Icon" class="page-icon" />
+    <h1 class="page-title">Minha Conta</h1>
+  </div>
+
+  <div class="user-info">
+    <div class="user-info-column left-column">
+      <span class="user-info-label">Nome:</span>
+      <span class="user-info-label">Sobrenome:</span>
+      <span class="user-info-label">E-mail:</span>
+    </div>
+    <div class="user-info-column right-column">
+      <span class="user-info-value">Isabela</span>
+      <span class="user-info-value">Costa</span>
+      <span class="user-info-value">isabelacosta&#64;gmail.com</span>
+    </div>
+  </div>
+
+  <button type="submit" class="edit-button">Editar</button>
+  <div class="user-info">
+    <div class="user-info-column left-column">
+      <span class="user-info-label">Senha:</span>
+    </div>
+    <div class="user-info-column right-column">
+      <span class="user-info-value">• • • • • • • • • • • •</span>
+    </div>
+  </div>
+  <button type="submit" class="edit-button">Alterar senha</button>
+  <div>
+  <button type="submit" class="exit-button">Sair</button>
+  </div>
+</div>

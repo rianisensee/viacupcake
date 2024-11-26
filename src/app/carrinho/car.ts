@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SaborService } from '../services/sabor.service';
 import { Sabor } from '../models/sabor.model';
 import { Location } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { CarrinhoService } from '../services/carrinho.service';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-carrinho',
@@ -13,12 +14,13 @@ import { Router } from '@angular/router';
   templateUrl: './carrinho.component.html',
   styleUrls: ['./carrinho.component.css']
 })
-export class CarrinhoComponent implements OnInit {
+export class CarrinhoComponent implements OnInit, OnDestroy {
   sabores: Sabor[] = [];
   quantidades: { [key: number]: number } = {};
   selectedDeliveryMethod: string | null = null;
   itensCarrinho: any[] = [];
   subtotal: number = 0;
+  private carrinhoSubscription: Subscription | undefined;
 
   constructor(
     private location: Location, 
@@ -28,8 +30,16 @@ export class CarrinhoComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.itensCarrinho = this.carrinhoService.obterItensCarrinho();
-    this.atualizarSubtotal();
+    this.carrinhoSubscription = this.carrinhoService.itensCarrinho$.subscribe(itens => {
+      this.itensCarrinho = itens;
+      this.atualizarSubtotal();
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.carrinhoSubscription) {
+      this.carrinhoSubscription.unsubscribe();
+    }
   }
 
   atualizarSubtotal(): void {
@@ -40,8 +50,6 @@ export class CarrinhoComponent implements OnInit {
     const item = this.itensCarrinho.find(i => i.saborId === saborId);
     if (item) {
       this.carrinhoService.atualizarQuantidade(saborId, item.quantidade + 1);
-      this.itensCarrinho = this.carrinhoService.obterItensCarrinho();
-      this.atualizarSubtotal(); // Atualiza o subtotal
     }
   }
 
@@ -49,15 +57,11 @@ export class CarrinhoComponent implements OnInit {
     const item = this.itensCarrinho.find(i => i.saborId === saborId);
     if (item && item.quantidade > 1) {
       this.carrinhoService.atualizarQuantidade(saborId, item.quantidade - 1);
-      this.itensCarrinho = this.carrinhoService.obterItensCarrinho();
-      this.atualizarSubtotal(); // Atualiza o subtotal
     }
   }
 
   removerDoCarrinho(saborId: number): void {
     this.carrinhoService.removerDoCarrinho(saborId);
-    this.itensCarrinho = this.carrinhoService.obterItensCarrinho();
-    this.atualizarSubtotal(); // Atualiza o subtotal
   }
 
   goBack(): void {
