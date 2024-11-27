@@ -280,7 +280,10 @@ html {
 
 .order-items .dotted-line {
   flex-grow: 1;
-  border-bottom: 1px dotted black;
+  border-bottom: 2px dotted black;
+  transform: translateY(300%);
+  margin-left: -4px;
+  margin-right: -4px;
 }
 
 .order-items .item-price {
@@ -306,6 +309,7 @@ html {
 .order-total .delivery-fee {
   margin-top: 10px;
   width: 100%;
+  font-size: 17px;
 }
 
 .order-total .total {

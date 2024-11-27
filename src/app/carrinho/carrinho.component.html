@@ -50,14 +50,16 @@
             <div class="delivery-method-container">
                 <h2 class="delivery-method-title">Forma de entrega:</h2>
             </div>
-            <div class="delivery-method-card" [ngClass]="{'selected': selectedDeliveryMethod === 'retirar'}" (click)="selecionarFormaDeEntrega('retirar')">
+            <div class="delivery-method-card" [ngClass]="{'selected': selectedDeliveryMethod === 'retirar'}"
+                (click)="selecionarFormaDeEntrega('retirar')">
                 <div class="radio-label-container">
                     <input type="radio" id="retirar" name="delivery" value="retirar" class="delivery-radio"
                         (click)="selecionarFormaDeEntrega('retirar')">
                     <label for="retirar">Retirar na loja</label>
                 </div>
             </div>
-            <div class="delivery-method-card" [ngClass]="{'selected': selectedDeliveryMethod === 'receber'}" (click)="selecionarFormaDeEntrega('receber')">
+            <div class="delivery-method-card" [ngClass]="{'selected': selectedDeliveryMethod === 'receber'}"
+                (click)="selecionarFormaDeEntrega('receber')">
                 <div class="radio-label-container">
                     <input type="radio" id="receber" name="delivery" value="receber" class="delivery-radio"
                         (click)="selecionarFormaDeEntrega('receber')">
@@ -66,6 +68,7 @@
                 <div *ngIf="selectedDeliveryMethod === 'receber'" class="address-form">
                     <label for="endereco">Endereço:</label>
                     <input type="text" id="endereco" name="endereco" class="address-input">
+                    <div *ngIf="mensagemErroEndereco" class="error-message">{{ mensagemErroEndereco }}</div>
                     <div class="additional-info-container">
                         <label for="additional-info">Complemento:</label>
                         <input type="text" id="additional-info" name="additional-info"
@@ -76,12 +79,13 @@
             <div *ngIf="selectedDeliveryMethod === 'receber'" class="delivery-price">
                 <p>Taxa de entrega: R$ 11,90</p>
             </div>
-            <div class="fixed-footer">
-                <div class="total-price">
-                    <p>Total: R$ 43,20</p>
-                </div>
-                <button type="submit" class="finalize-button" (click)="finalizarCompra()">Finalizar compra</button>
-            </div>
+            <div *ngIf="mensagemErro" class="error-message" id="errorMessage">{{ mensagemErro }}</div>
         </div>
+    </div>
+    <div class="fixed-footer">
+        <div class="total-price">
+            <p>Total: R$ 43,20</p>
+        </div>
+        <button type="submit" class="finalize-button" (click)="finalizarCompra()">Finalizar compra</button>
     </div>
 </body>

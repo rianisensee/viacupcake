@@ -1,20 +1,51 @@
 <div class="background-container"></div>
 <div class="head-container">
     <div class="back-button" (click)="goBack()">
-        <span class="back-symbol">&#8592;</span> 
+        <span class="back-symbol">&#8592;</span>
         <span class="back-text">Voltar</span>
     </div>
-    <h2 class="order-title">Pedido:</h2>
-    <h2 class="order-title">Método de pagamento:</h2>
-    <div class="payment-method-card" [ngClass]="{'selected': selectedPaymentMethod === 'retirar'}" (click)="selecionarFormaDePagamento('retirar')">
+    <h2 class="orders-title">Pedido:</h2>
+    <div class="order-item">
+        <div class="flavor-quantity">2x</div>
+        <div class="flavor-image">
+            <img src="assets/images/redvelvet.png" alt="Red Velvet Cupcake">
+        </div>
+        <div class="flavor-title">Cupcake Red Velvet</div>
+        <div class="dotted-line"></div>
+        <div class="item-price">R$ 19,80</div>
+    </div>
+    <div class="order-item">
+        <div class="flavor-quantity">1x</div>
+        <div class="flavor-image">
+            <img src="assets/images/chocolatebelga.png" alt="Chocolate Belga Cupcake">
+        </div>
+        <div class="flavor-title">Cupcake Chocolate Belga</div>
+        <div class="dotted-line"></div>
+        <div class="item-price">R$ 11,50</div>
+    </div>
+    <div class="order-summary">
+        <div class="subtotal">Subtotal: R$ 31,30</div>
+        <div class="delivery">
+            <div class="delivery-label">Entrega:</div>
+            <div class="delivery-address">R. Uruguai, 447 - Andaraí, Rio de Janeiro - RJ</div>
+        </div>
+        <div class="delivery-fee">Taxa de entrega: R$ 11,90</div>
+        <div class="total">Total: R$ 43,20</div>
+    </div>
+    <h2 class="orders-title">Método de pagamento:</h2>
+    <div class="payment-method-card" [ngClass]="{'selected': selectedPaymentMethod === 'retirar'}"
+        (click)="selecionarFormaDePagamento('retirar')">
         <div class="radio-label-container">
-            <input type="radio" id="retirar" name="delivery" value="retirar" class="payment-radio" (click)="selecionarFormaDePagamento('retirar')">
+            <input type="radio" id="retirar" name="delivery" value="retirar" class="payment-radio"
+                (click)="selecionarFormaDePagamento('retirar')">
             <label for="retirar">Pix</label>
         </div>
     </div>
-    <div class="payment-method-card" [ngClass]="{'selected': selectedPaymentMethod === 'receber'}" (click)="selecionarFormaDePagamento('receber')">
+    <div class="payment-method-card" [ngClass]="{'selected': selectedPaymentMethod === 'receber'}"
+        (click)="selecionarFormaDePagamento('receber')">
         <div class="radio-label-container">
-            <input type="radio" id="receber" name="delivery" value="receber" class="payment-radio" (click)="selecionarFormaDePagamento('receber')">
+            <input type="radio" id="receber" name="delivery" value="receber" class="payment-radio"
+                (click)="selecionarFormaDePagamento('receber')">
             <label for="receber">Cartão de crédito</label>
         </div>
         <div *ngIf="selectedPaymentMethod === 'receber'" class="credit-cart-form">
@@ -27,18 +58,24 @@
                     <label for="data-vencimento">Data de vencimento</label>
                     <input type="text" id="data-vencimento" name="data-vencimento" class="credit-cart-form-input">
                 </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group nome-cartao">
+                    <label for="nome-cartao">Nome impresso no cartão</label>
+                    <input type="text" id="nome-cartao" name="nome-cartao" class="credit-cart-form-input">
                 </div>
-                <div class="form-row">
-                    <div class="form-group nome-cartao">
-                        <label for="nome-cartao">Nome impresso no cartão</label>
-                        <input type="text" id="nome-cartao" name="nome-cartao" class="credit-cart-form-input">
-                    </div>
-                    <div class="form-group cvv">
-                        <label for="cvv">CVV</label>
-                        <input type="text" id="cvv" name="cvv" class="credit-cart-form-input">
-                    </div>
+                <div class="form-group cvv">
+                    <label for="cvv">CVV</label>
+                    <input type="text" id="cvv" name="cvv" class="credit-cart-form-input">
+                </div>
             </div>
         </div>
     </div>
     <button type="submit" class="finalize-button" (click)="finalizarPedido()">Finalizar pedido</button>
-</div>
+
+<app-alert 
+  *ngIf="showAlert" 
+  [showAlert]="showAlert" 
+  [alertMessage]="alertMessage" 
+  (close)="closeAlert()">
+</app-alert>

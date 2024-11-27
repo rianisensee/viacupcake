@@ -19,6 +19,8 @@ export class CarrinhoComponent implements OnInit {
   selectedDeliveryMethod: string | null = null;
   itensCarrinho: any[] = [];
   subtotal: number = 0;
+  mensagemErro: string | null = null;
+  mensagemErroEndereco: string | null = null; // Adiciona a variável mensagemErroEndereco
 
   constructor(
     private location: Location, 
@@ -57,7 +59,7 @@ export class CarrinhoComponent implements OnInit {
   removerDoCarrinho(saborId: number): void {
     this.carrinhoService.removerDoCarrinho(saborId);
     this.itensCarrinho = this.carrinhoService.obterItensCarrinho();
-    this.atualizarSubtotal(); // Atualiza o subtotal
+    this.atualizarSubtotal();
   }
 
   goBack(): void {
@@ -66,9 +68,43 @@ export class CarrinhoComponent implements OnInit {
 
   selecionarFormaDeEntrega(metodo: string): void {
     this.selectedDeliveryMethod = metodo;
+    this.mensagemErro = null;
+    this.mensagemErroEndereco = null;
+    setTimeout(() => {
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+      if (metodo === 'receber') {
+        const addressFormElement = document.querySelector('.address-form');
+        if (addressFormElement) {
+          addressFormElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }
+    }, 0);
   }
 
   finalizarCompra(): void {
-    this.router.navigate(['/compra']);
+    if (!this.selectedDeliveryMethod) {
+      this.mensagemErro = 'Selecione a forma de entrega';
+      setTimeout(() => {
+        const errorMessageElement = document.getElementById('errorMessage');
+        if (errorMessageElement) {
+          errorMessageElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 0);
+    } else if (this.selectedDeliveryMethod === 'receber') {
+      const enderecoInput = document.getElementById('endereco') as HTMLInputElement;
+      if (!enderecoInput.value) {
+        this.mensagemErroEndereco = 'Insira um endereço para a entrega';
+        setTimeout(() => {
+          const errorMessageElement = document.querySelector('.error-message');
+          if (errorMessageElement) {
+            errorMessageElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }, 0);
+      } else {
+        this.router.navigate(['/compra']);
+      }
+    } else {
+      this.router.navigate(['/compra']);
+    }
   }
 }

@@ -1,0 +1,45 @@
+.alert-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .alert-box {
+    background-color: #e3dfc6;
+    border: 5px solid #a02931;
+    border-radius: 16px;
+    padding: 12px;
+    text-align: center;
+  }
+  
+  .alert-icon {
+    width: 60px;
+    filter: invert(29%) sepia(65%) saturate(1234%) hue-rotate(66deg) brightness(91%) contrast(89%);
+    margin-bottom: 5px;
+  }
+  
+  .alert-message {
+    font-size: 25px;
+    color: #a02931;
+    margin-bottom: 7px;
+  }
+  
+  .alert-button {
+    font-family: 'Futura Condensed Medium', sans-serif;
+    background-color: #873f36;
+    color: #e3dfc6;
+    padding: 5px 17px;
+    font-size: 27px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    filter: drop-shadow(1.4px 1.4px 0px black);
+    margin-top: 8px;
+  }

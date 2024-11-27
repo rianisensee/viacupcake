@@ -3,17 +3,20 @@ import { Router } from '@angular/router';
 import { SaborService } from '../services/sabor.service';
 import { Sabor } from '../models/sabor.model';
 import { Location, CommonModule } from '@angular/common';
+import { AlertComponent } from '../alert/alert.component';
 
 @Component({
   selector: 'app-compra',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, AlertComponent],
   templateUrl: './compra.component.html',
-  styleUrl: './compra.component.css'
+  styleUrls: ['./compra.component.css']
 })
 export class CompraComponent implements OnInit {
   sabores: Sabor[] = [];
   selectedPaymentMethod: string | null = null;
+  showAlert: boolean = false;
+  alertMessage: string = '';
 
   constructor(
     private location: Location, 
@@ -34,7 +37,12 @@ export class CompraComponent implements OnInit {
   }
 
   finalizarPedido(): void {
-    this.router.navigate(['/compra']);
+    this.alertMessage = 'Pedido efetuado com sucesso!';
+    this.showAlert = true;
   }
 
+  closeAlert(): void {
+    this.showAlert = false;
+    this.router.navigate(['/']);
+  }
 }

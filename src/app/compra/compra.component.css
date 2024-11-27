@@ -42,7 +42,7 @@ body, html {
   margin-left: 5px;
 }
 
-.order-title {
+.orders-title {
   font-family: 'Futura Condensed Medium', sans-serif;
   font-size: 30px;
   color: #a02931;
@@ -50,6 +50,110 @@ body, html {
   margin-top: 10px;
   margin-bottom: 20px;
   filter: drop-shadow(0.2px 0.2px 0px black);
+}
+
+.order-item {
+  display: flex;
+  align-items: center;
+  margin-top: -10px;
+}
+
+.flavor-quantity {
+  flex: 0 0 auto;
+  text-align: left;
+  font-size: 21px;
+  margin-left: 5px;
+}
+
+.flavor-image {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-left: -10px;
+  transform: translateY(-10px);
+}
+
+.flavor-image img {
+  max-height: 70px;
+}
+
+.flavor-title {
+  flex: 0 0 auto;
+  text-align: left;
+  font-size: 21px;
+  color: #873f36;
+  margin-left: -8px;
+}
+
+.dotted-line {
+  flex-grow: 1;
+  border-bottom: 2px dotted black;
+  transform: translateY(350%);
+  width: auto;
+}
+
+.item-price {
+  flex: 0 0 auto;
+  text-align: right;
+  font-size: 21px;
+  color: black;
+  margin-right: 5px;
+}
+
+.order-summary {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-left: -5px;
+  margin-right: -5px;
+}
+
+.subtotal {
+  font-size: 24px;
+  text-align: right;
+  margin-bottom: 10px;
+  margin-top: -6px;
+}
+
+.delivery {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.delivery-label {
+  flex: 1;
+  color: #873f36;
+  font-size: 21px;
+  text-align: right;
+  margin-right: 10px;
+}
+
+.delivery-address {
+  flex: 4;
+  color: black;
+  font-size: 21px;
+  text-align: left;
+  margin-right: 20px;
+}
+
+.delivery-fee {
+  font-size: 21px;
+  text-align: right;
+  margin-top: -8px;
+  margin-bottom: 3px;
+}
+
+.total {
+  font-size: 27px;
+  text-align: right;
+  text-decoration: underline;
+  margin-bottom: 10px;
+}
+
+.payment-method-card {
+  font-family: 'Futura Condensed Medium', sans-serif;
+  font-size: 27px;
 }
 
 .payment-method-card {

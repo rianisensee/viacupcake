@@ -1,0 +1,7 @@
+<div class="alert-overlay" *ngIf="showAlert">
+    <div class="alert-box">
+      <img src="assets/icons/checkmark.svg" class="alert-icon" alt="Checkmark Icon">
+      <div class="alert-message">{{ alertMessage }}</div>
+      <button class="alert-button" (click)="closeAlert()">Ok</button>
+    </div>
+  </div>

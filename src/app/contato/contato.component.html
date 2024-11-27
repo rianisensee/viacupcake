@@ -1,34 +1,40 @@
 <div class="page-container">
-    <div class="back-button" (click)="goBack()">
-      <span class="back-symbol">&#8592;</span> 
-      <span class="back-text">Voltar</span>
-    </div>
-  
-    <div class="title-container">
-      <img src="assets/icons/message.svg" alt="Message Icon" class="page-icon" />
-      <h1 class="page-title">Fale Conosco</h1>
-    </div>
-  
-    <div class="form-container">
-      <form>
-        <label for="email" class="form-label">E-mail:</label>
-        <input type="email" id="email" name="email" class="form-input" />
-  
-        <label for="subject" class="form-label">Assunto:</label>
-        <input type="text" id="subject" name="subject" class="form-input" />
-  
-        <label for="message" class="form-label">Mensagem:</label>
-        <textarea id="message" name="message" class="form-textarea" ></textarea>
-  
-        <button type="submit" class="submit-button">Enviar</button>
-      </form>
-    </div>
-  
-    <div class="whatsapp-button-container">
-      <button class="whatsapp-button">
-        <img src="assets/icons/whatsapp.svg" alt="WhatsApp Icon" class="whatsapp-icon" />
-        <span class="whatsapp-text">WhatsApp</span>
-      </button>
-    </div>
+  <div class="back-button" (click)="goBack()">
+    <span class="back-symbol">&#8592;</span> 
+    <span class="back-text">Voltar</span>
   </div>
-  
+
+  <div class="title-container">
+    <img src="assets/icons/message.svg" alt="Message Icon" class="page-icon" />
+    <h1 class="page-title">Fale Conosco</h1>
+  </div>
+
+  <div class="form-container">
+    <form #messageForm="ngForm">
+      <label for="email" class="form-label">E-mail:</label>
+      <input type="email" id="email" name="email" class="form-input" ngModel />
+
+      <label for="subject" class="form-label">Assunto:</label>
+      <input type="text" id="subject" name="subject" class="form-input" ngModel />
+
+      <label for="message" class="form-label">Mensagem:</label>
+      <textarea id="message" name="message" class="form-textarea" ngModel></textarea>
+
+      <button type="submit" class="submit-button" (click)="sendMessage($event)">Enviar</button>
+    </form>
+  </div>
+
+  <div class="whatsapp-button-container">
+    <button class="whatsapp-button">
+      <img src="assets/icons/whatsapp.svg" alt="WhatsApp Icon" class="whatsapp-icon" />
+      <span class="whatsapp-text">WhatsApp</span>
+    </button>
+  </div>
+</div>
+
+<app-alert 
+  *ngIf="showAlert" 
+  [showAlert]="showAlert" 
+  [alertMessage]="alertMessage" 
+  (close)="closeAlert(messageForm)">
+</app-alert>

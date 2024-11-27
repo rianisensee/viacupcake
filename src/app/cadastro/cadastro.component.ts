@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { Location, CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UserService } from '../services/user.service';
+import { AlertComponent } from '../alert/alert.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule,AlertComponent],
   templateUrl: './cadastro.component.html',
   styleUrls: ['./cadastro.component.css']
 })
@@ -22,8 +24,14 @@ export class CadastroComponent {
   passwordTimeout: any;
   confirmPasswordTimeout: any;
   registrationError: string = '';
+  showAlert: boolean = false;
+  alertMessage: string = '';
 
-  constructor(private location: Location, private userService: UserService) {}
+  constructor(
+    private location: Location, 
+    private userService: UserService,
+    private router: Router
+  ) {}
 
   goBack(): void {
     this.location.back();
@@ -77,7 +85,11 @@ export class CadastroComponent {
       email: this.email,
       password: this.password
     });
-    alert('Cadastro realizado com sucesso!');
-    this.location.back();
+    this.alertMessage = 'Conta criada com sucesso!';
+    this.showAlert = true;
+  }
+  closeAlert(): void {
+    this.showAlert = false;
+    this.router.navigate(['/']);
   }
 }

@@ -389,7 +389,6 @@ html {
     display: inline-block;
     margin-right: 0px;
     margin-left: auto;
-    margin-bottom: 50px;
 }
 
 .fixed-footer {
@@ -428,4 +427,13 @@ html {
     margin-left: 10px;
     flex: 1;
     filter: drop-shadow(1.4px 1.4px 0px black);
+}
+
+.error-message {
+    color: #a02931;
+    text-align: left;
+    margin-left: 10px;
+    font-size: 20px;
+    margin-top: -5px;
+    margin-bottom: 8px;
 }

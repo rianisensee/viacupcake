@@ -53,3 +53,10 @@
     Já possui conta? <a href="/login" class="register-link">Entre</a>
   </div>
 </div>
+
+<app-alert 
+  *ngIf="showAlert" 
+  [showAlert]="showAlert" 
+  [alertMessage]="alertMessage" 
+  (close)="closeAlert()">
+</app-alert>
