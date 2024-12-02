@@ -20,32 +20,10 @@ describe('LoginComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should mask the password input by default', () => {
+  it('should have a password input field', () => {
     const compiled = fixture.nativeElement;
     const passwordInput = compiled.querySelector('input[type="password"]');
     expect(passwordInput).toBeTruthy();
-  });
-
-  it('should briefly show the last character of the password', (done) => {
-    component.password = '12345';
-    const inputElement = fixture.nativeElement.querySelector('input[type="password"]');
-
-    const event = new Event('input');
-    inputElement.value = '12345';
-    inputElement.dispatchEvent(event);
-
-    component.onPasswordInput(event);
-    fixture.detectChanges();
-
-    expect(component.maskedPassword).toBe('****5');
-    expect(fixture.nativeElement.querySelector('input').value).toBe('****5');
-
-    setTimeout(() => {
-      fixture.detectChanges();
-      expect(component.maskedPassword).toBe('*****');
-      expect(fixture.nativeElement.querySelector('input').value).toBe('*****');
-      done();
-    }, 500);
   });
 
   it('should have a "Forgot password" link', () => {

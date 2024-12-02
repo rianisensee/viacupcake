@@ -5,50 +5,51 @@
         <span class="back-text">Voltar</span>
     </div>
     <h2 class="orders-title">Pedido:</h2>
-    <div class="order-item">
-        <div class="flavor-quantity">2x</div>
-        <div class="flavor-image">
-            <img src="assets/images/redvelvet.png" alt="Red Velvet Cupcake">
+    <ng-container *ngFor="let item of itensCompra">
+        <div class="order-item">
+            <div class="flavor-quantity">{{ item.quantidade }}x</div>
+            <div class="flavor-image">
+                <img [src]="item.imagem" alt="{{ item.titulo }}">
+            </div>
+            <div class="flavor-title">
+                <ng-container *ngFor="let line of getFormattedTitle(item.titulo)">
+                  <div>{{ line }}</div>
+                </ng-container>
+              </div>
+              <div class="dotted-line"></div>
+              <div class="item-price">R$ {{ item.preco * item.quantidade | number:'1.2-2' }}</div>
         </div>
-        <div class="flavor-title">Cupcake Red Velvet</div>
-        <div class="dotted-line"></div>
-        <div class="item-price">R$ 19,80</div>
-    </div>
-    <div class="order-item">
-        <div class="flavor-quantity">1x</div>
-        <div class="flavor-image">
-            <img src="assets/images/chocolatebelga.png" alt="Chocolate Belga Cupcake">
-        </div>
-        <div class="flavor-title">Cupcake Chocolate Belga</div>
-        <div class="dotted-line"></div>
-        <div class="item-price">R$ 11,50</div>
-    </div>
+    </ng-container>
     <div class="order-summary">
-        <div class="subtotal">Subtotal: R$ 31,30</div>
+        <div *ngIf="deliveryMethod === 'receber'" class="subtotal">Subtotal: R$ {{ subtotal | number:'1.2-2' }}</div>
         <div class="delivery">
-            <div class="delivery-label">Entrega:</div>
-            <div class="delivery-address">R. Uruguai, 447 - Andaraí, Rio de Janeiro - RJ</div>
+          <div class="delivery-label">Entrega:</div>
+          <div class="delivery-address">
+            <div *ngIf="deliveryMethod === 'receber'">{{ endereco }}</div>
+            <div *ngIf="deliveryMethod !== 'receber'">Retirada na loja</div>
+            <div *ngIf="deliveryMethod === 'receber' && complemento">{{ complemento }}</div>
+          </div>
         </div>
-        <div class="delivery-fee">Taxa de entrega: R$ 11,90</div>
-        <div class="total">Total: R$ 43,20</div>
-    </div>
+        <div *ngIf="deliveryMethod === 'receber'" class="delivery-fee">Taxa de entrega: R$ 11,90</div>
+        <div class="total">Total: R$ {{ total | number:'1.2-2' }}</div>
+      </div>
     <h2 class="orders-title">Método de pagamento:</h2>
-    <div class="payment-method-card" [ngClass]="{'selected': selectedPaymentMethod === 'retirar'}"
-        (click)="selecionarFormaDePagamento('retirar')">
+    <div class="payment-method-card" [ngClass]="{'selected': selectedPaymentMethod === 'pix'}"
+        (click)="selecionarFormaDePagamento('pix')">
         <div class="radio-label-container">
-            <input type="radio" id="retirar" name="delivery" value="retirar" class="payment-radio"
-                (click)="selecionarFormaDePagamento('retirar')">
-            <label for="retirar">Pix</label>
+            <input type="radio" id="pix" name="delivery" value="pix" class="payment-radio"
+                (click)="selecionarFormaDePagamento('pix')">
+            <label for="pix">Pix</label>
         </div>
     </div>
-    <div class="payment-method-card" [ngClass]="{'selected': selectedPaymentMethod === 'receber'}"
-        (click)="selecionarFormaDePagamento('receber')">
+    <div class="payment-method-card" [ngClass]="{'selected': selectedPaymentMethod === 'credit'}"
+        (click)="selecionarFormaDePagamento('credit')">
         <div class="radio-label-container">
-            <input type="radio" id="receber" name="delivery" value="receber" class="payment-radio"
-                (click)="selecionarFormaDePagamento('receber')">
-            <label for="receber">Cartão de crédito</label>
+            <input type="radio" id="credit" name="delivery" value="credit" class="payment-radio"
+                (click)="selecionarFormaDePagamento('credit')">
+            <label for="credit">Cartão de crédito</label>
         </div>
-        <div *ngIf="selectedPaymentMethod === 'receber'" class="credit-cart-form">
+        <div *ngIf="selectedPaymentMethod === 'credit'" class="credit-cart-form">
             <div class="form-row">
                 <div class="form-group numero-cartao">
                     <label for="numero-cartao">Número do cartão</label>
@@ -71,6 +72,7 @@
             </div>
         </div>
     </div>
+    <div *ngIf="mensagemErro" class="error-message" id="errorMessage">{{ mensagemErro }}</div>
     <button type="submit" class="finalize-button" (click)="finalizarPedido()">Finalizar pedido</button>
 
 <app-alert 

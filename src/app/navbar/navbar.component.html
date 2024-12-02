@@ -9,11 +9,11 @@
   </div>
 
   <div class="right-icons">
-    <img src="assets/icons/orders.svg" alt="Orders" (click)="navigateTo('/pedidos')">
-    <img src="assets/icons/user.svg" alt="Login" (click)="navigateTo('/login')">
+    <img *ngIf="isLoggedIn" src="assets/icons/orders.svg" alt="Orders" (click)="navigateTo('/pedidos')">
+    <img src="assets/icons/user.svg" alt="Login" (click)="navigateTo(isLoggedIn ? '/conta' : '/login')">
     <div class="cart-container" (click)="navigateTo('/carrinho')">
       <img src="assets/icons/cart.svg" alt="Cart">
       <div *ngIf="totalItensCarrinho > 0" class="cart-badge">{{ totalItensCarrinho }}</div>
     </div>
-  </div>
+</div>
 </div>

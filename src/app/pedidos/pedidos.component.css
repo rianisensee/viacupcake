@@ -64,16 +64,10 @@ html {
   filter: drop-shadow(0.5px 0.5px 0px black);
 }
 
-.empty-cart-message {
+.no-orders-message {
   text-align: center;
   margin-top: 100px;
   font-size: 23px;
-}
-
-.home-link {
-  text-decoration: underline;
-  color: #a02931;
-  cursor: pointer;
 }
 
 .orders-container {
@@ -86,7 +80,7 @@ html {
   box-sizing: border-box;
   position: relative;
   z-index: 2;
-  margin-bottom: 55px;
+  margin-bottom: -25px;
 }
 
 .order-card {
@@ -203,15 +197,6 @@ html {
   filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(100%) contrast(100%);
 }
 
-.order-status {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 24%;
-  margin-top: 10px;
-  font-size: 18px;
-}
-
 .order-status div {
   margin-bottom: 20px;
 }
@@ -220,13 +205,9 @@ html {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 32%;
+  width: 47%;
   margin-top: 15px;
   font-size: 18px;
-}
-
-.order-status div {
-  margin-bottom: 20px;
 }
 
 .order-details {

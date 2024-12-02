@@ -54,7 +54,7 @@
                 (click)="selecionarFormaDeEntrega('retirar')">
                 <div class="radio-label-container">
                     <input type="radio" id="retirar" name="delivery" value="retirar" class="delivery-radio"
-                        (click)="selecionarFormaDeEntrega('retirar')">
+                        (click)="selecionarFormaDeEntrega('retirar')" [checked]="selectedDeliveryMethod === 'retirar'">
                     <label for="retirar">Retirar na loja</label>
                 </div>
             </div>
@@ -62,17 +62,19 @@
                 (click)="selecionarFormaDeEntrega('receber')">
                 <div class="radio-label-container">
                     <input type="radio" id="receber" name="delivery" value="receber" class="delivery-radio"
-                        (click)="selecionarFormaDeEntrega('receber')">
+                        (click)="selecionarFormaDeEntrega('receber')" [checked]="selectedDeliveryMethod === 'receber'">
                     <label for="receber">Receber em casa</label>
                 </div>
                 <div *ngIf="selectedDeliveryMethod === 'receber'" class="address-form">
                     <label for="endereco">Endereço:</label>
-                    <input type="text" id="endereco" name="endereco" class="address-input">
+                    <input type="text" id="endereco" name="endereco" class="address-input" [(ngModel)]="endereco"
+                        [ngClass]="{'error': mensagemErroEndereco}" (ngModelChange)="onEnderecoChange()">
                     <div *ngIf="mensagemErroEndereco" class="error-message">{{ mensagemErroEndereco }}</div>
                     <div class="additional-info-container">
                         <label for="additional-info">Complemento:</label>
                         <input type="text" id="additional-info" name="additional-info"
-                            class="address-input additional-info-input">
+                            class="address-input additional-info-input" [(ngModel)]="complemento"
+                            (ngModelChange)="onComplementoChange()">
                     </div>
                 </div>
             </div>
@@ -80,12 +82,12 @@
                 <p>Taxa de entrega: R$ 11,90</p>
             </div>
             <div *ngIf="mensagemErro" class="error-message" id="errorMessage">{{ mensagemErro }}</div>
+            <div class="fixed-footer">
+                <div class="total-price">
+                    <p>Total: R$ {{ total | number:'1.2-2' }}</p>
+                </div>
+                <button type="submit" class="finalize-button" (click)="finalizarCompra()">Finalizar compra</button>
+            </div>
         </div>
-    </div>
-    <div class="fixed-footer">
-        <div class="total-price">
-            <p>Total: R$ 43,20</p>
-        </div>
-        <button type="submit" class="finalize-button" (click)="finalizarCompra()">Finalizar compra</button>
     </div>
 </body>

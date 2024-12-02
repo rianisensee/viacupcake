@@ -84,6 +84,11 @@ body, html {
   font-size: 21px;
   color: #873f36;
   margin-left: -8px;
+  line-height: 1.1; /* Ajuste o espaçamento entre linhas */
+}
+
+.flavor-title div {
+  margin-bottom: 2px; /* Pequeno espaçamento entre as linhas */
 }
 
 .dotted-line {
@@ -126,7 +131,7 @@ body, html {
   color: #873f36;
   font-size: 21px;
   text-align: right;
-  margin-right: 10px;
+  margin-right: 5px;
 }
 
 .delivery-address {
@@ -293,4 +298,12 @@ body, html {
   filter: drop-shadow(1.4px 1.4px 0px black);
   margin-top: 8px;
   margin-bottom: 16px;
+}
+
+.error-message {
+  color: #a02931;
+  text-align: left;
+  margin-left: 10px;
+  font-size: 20px;
+  margin-bottom: 8px;
 }

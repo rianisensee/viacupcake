@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-cadastro',
   standalone: true,
-  imports: [FormsModule, CommonModule,AlertComponent],
+  imports: [FormsModule, CommonModule, AlertComponent],
   templateUrl: './cadastro.component.html',
   styleUrls: ['./cadastro.component.css']
 })
@@ -18,76 +18,81 @@ export class CadastroComponent {
   email: string = '';
   password: string = '';
   confirmPassword: string = '';
-  maskedPassword: string = '';
-  maskedConfirmPassword: string = '';
-  showPassword: boolean = false;
-  passwordTimeout: any;
-  confirmPasswordTimeout: any;
   registrationError: string = '';
   showAlert: boolean = false;
   alertMessage: string = '';
 
+  firstNameError: string = '';
+  lastNameError: string = '';
+  emailError: string = '';
+  passwordError: string = '';
+  confirmPasswordError: string = '';
+
   constructor(
-    private location: Location, 
+    private location: Location,
     private userService: UserService,
     private router: Router
-  ) {}
+  ) { }
 
   goBack(): void {
     this.location.back();
   }
 
-  onPasswordInput(event: Event): void {
-    clearTimeout(this.passwordTimeout);
-
-    const inputElement = event.target as HTMLInputElement;
-    const actualPassword = inputElement.value;
-
-    this.password = actualPassword;
-
-    this.maskedPassword = '*'.repeat(this.password.length - 1) + this.password.slice(-1);
-
-    this.passwordTimeout = setTimeout(() => {
-      this.maskedPassword = '*'.repeat(this.password.length);
-    }, 750);
-  }
-
-  onConfirmPasswordInput(event: Event): void {
-    clearTimeout(this.confirmPasswordTimeout);
-
-    const inputElement = event.target as HTMLInputElement;
-    const actualConfirmPassword = inputElement.value;
-
-    this.confirmPassword = actualConfirmPassword;
-
-    this.maskedConfirmPassword = '*'.repeat(this.confirmPassword.length - 1) + this.confirmPassword.slice(-1);
-
-    this.confirmPasswordTimeout = setTimeout(() => {
-      this.maskedConfirmPassword = '*'.repeat(this.confirmPassword.length);
-    }, 750);
-  }
-
   onSubmit(): void {
-    if (this.password !== this.confirmPassword) {
-      this.registrationError = 'As senhas não coincidem';
-      return;
+    this.clearErrors();
+
+    if (!this.firstName) {
+      this.firstNameError = 'Campo obrigatório';
+    }
+
+    if (!this.lastName) {
+      this.lastNameError = 'Campo obrigatório';
+    }
+
+    if (!this.email) {
+      this.emailError = 'Campo obrigatório';
+    } else if (!this.validateEmail(this.email)) {
+      this.emailError = 'Digite um e-mail válido';
+    }
+
+    if (!this.password) {
+      this.passwordError = 'Campo obrigatório';
+    } else if (this.password.length < 6) {
+      this.passwordError = 'A senha deve possuir no mínimo 6 caracteres';
+    }
+
+    if (!this.confirmPassword) {
+      this.confirmPasswordError = 'Campo obrigatório';
+    } else if (this.password !== this.confirmPassword) {
+      this.confirmPasswordError = 'As senhas não coincidem';
     }
 
     const existingUser = this.userService.findUserByEmail(this.email);
     if (existingUser) {
-      this.registrationError = 'E-mail já cadastrado';
+      this.emailError = 'E-mail já cadastrado';
+    }
+
+    if (this.firstNameError || this.lastNameError || this.emailError || this.passwordError || this.confirmPasswordError) {
       return;
     }
 
-    this.userService.register({
-      firstName: this.firstName,
-      lastName: this.lastName,
-      email: this.email,
-      password: this.password
-    });
     this.alertMessage = 'Conta criada com sucesso!';
     this.showAlert = true;
   }
+
+  validateEmail(email: string): boolean {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  }
+
+  clearErrors(): void {
+    this.firstNameError = '';
+    this.lastNameError = '';
+    this.emailError = '';
+    this.passwordError = '';
+    this.confirmPasswordError = '';
+  }
+
   closeAlert(): void {
     this.showAlert = false;
     this.router.navigate(['/']);

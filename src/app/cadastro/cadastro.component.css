@@ -1,95 +1,106 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap');
 
 * {
-    font-family: 'Futura Condensed Medium', sans-serif;
-  }
-  
-  .page-container {
-    text-align: center;
-    padding: 10px;
-  }
-  
-  .back-button {
-    display: flex;
-    align-items: center;
-    color: #a02931;
-    cursor: pointer;
-  }
-  
-  .back-symbol {
-    font-size: 24px;
-  }
-  
-  .back-text {
-    font-size: 23px;
-    text-decoration: underline;
-    margin-left: 5px;
-  }
-  
-  .title-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .page-icon {
-    width: 40px;
-    filter: drop-shadow(0.7px 0.7px 0px black);
-  }
-  
-  .page-title {
-    color: #a02931;
-    font-size: 35px;
-    margin-left: 10px;
-    filter: drop-shadow(0.5px 0.5px 0px black);
-  }
-  
-  .form-container {
-    margin-top: 10px;
-    padding: 0 17px;
-  }
-  
-  .form-label {
-    display: block;
-    color: #a02931;
-    font-size: 25px;
-    margin-bottom: 2px;
-    text-align: left;
-    margin-left: 17px;
-    margin-top: 12px;
-  }
-  
-  .form-input {
-    width: 100%;
-    max-width: 90%;
-    padding: 10px;
-    background-color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 18px;
-  }
-  
-  .submit-button {
-    background-color: #873f36;
-    color: #e3dfc6;
-    padding: 7px 13px;
-    font-size: 26px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    margin-top: 25px;
-    margin-bottom: 35px;
-    filter: drop-shadow(1.4px 1.4px 0px black);
-  }
-  
-  .register-text {
-    margin-top: 8px;
-    font-size: 26px;
-    color: #873f36;
-  }
-  
-  .register-link {
-    color: #a02931;
-    text-decoration: underline;
-  }
-  
+  font-family: 'Futura Condensed Medium', sans-serif;
+}
+
+.page-container {
+  text-align: center;
+  padding: 10px;
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  color: #a02931;
+  cursor: pointer;
+}
+
+.back-symbol {
+  font-size: 24px;
+}
+
+.back-text {
+  font-size: 23px;
+  text-decoration: underline;
+  margin-left: 5px;
+}
+
+.title-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.page-icon {
+  width: 40px;
+  filter: drop-shadow(0.7px 0.7px 0px black);
+}
+
+.page-title {
+  color: #a02931;
+  font-size: 35px;
+  margin-left: 10px;
+  filter: drop-shadow(0.5px 0.5px 0px black);
+}
+
+.form-container {
+  padding: 0 17px;
+}
+
+.form-label {
+  display: block;
+  color: #a02931;
+  font-size: 24px;
+  text-align: left;
+  margin-left: 17px;
+  margin-top: 17px;
+}
+
+.form-input {
+  width: 100%;
+  max-width: 90%;
+  padding: 10px;
+  background-color: white;
+  border-radius: 8px;
+  font-size: 18px;
+  border: 2px solid #d5ae79;
+}
+
+.form-input.error {
+  border-color: #a02931;
+}
+
+.error-message {
+  color: #a02931;
+  font-size: 17px;
+  margin-left: 10px;
+  margin-right: 40px;
+  text-align: right;
+  position: absolute;
+  right: 0;
+}
+
+.submit-button {
+  background-color: #873f36;
+  color: #e3dfc6;
+  padding: 7px 13px;
+  font-size: 26px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 35px;
+  margin-bottom: 20px;
+  filter: drop-shadow(1.4px 1.4px 0px black);
+}
+
+.register-text {
+  margin-top: 8px;
+  font-size: 26px;
+  color: #873f36;
+}
+
+.register-link {
+  color: #a02931;
+  text-decoration: underline;
+}

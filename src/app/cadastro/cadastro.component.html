@@ -12,41 +12,27 @@
   <div class="form-container">
     <form (ngSubmit)="onSubmit()">
       <label for="firstName" class="form-label">Nome</label>
-      <input type="text" id="firstName" name="firstName" class="form-input" [(ngModel)]="firstName" required />
+      <input type="text" id="firstName" name="firstName" class="form-input" [(ngModel)]="firstName" [ngClass]="{'error': firstNameError}" required />
+      <div *ngIf="firstNameError" class="error-message">{{ firstNameError }}</div>
 
       <label for="lastName" class="form-label">Sobrenome</label>
-      <input type="text" id="lastName" name="lastName" class="form-input" [(ngModel)]="lastName" required />
+      <input type="text" id="lastName" name="lastName" class="form-input" [(ngModel)]="lastName" [ngClass]="{'error': lastNameError}" required />
+      <div *ngIf="lastNameError" class="error-message">{{ lastNameError }}</div>
 
       <label for="email" class="form-label">E-mail</label>
-      <input type="email" id="email" name="email" class="form-input" [(ngModel)]="email" required />
+      <input type="email" id="email" name="email" class="form-input" [(ngModel)]="email" [ngClass]="{'error': emailError}" required />
+      <div *ngIf="emailError" class="error-message">{{ emailError }}</div>
 
       <label for="password" class="form-label">Senha</label>
-      <input
-        type="text"
-        id="password"
-        name="password"
-        class="form-input"
-        [(ngModel)]="password"
-        [value]="maskedPassword"
-        (input)="onPasswordInput($event)"
-        required
-      />
+      <input type="password" id="password" name="password" class="form-input" [(ngModel)]="password" [ngClass]="{'error': passwordError}" required />
+      <div *ngIf="passwordError" class="error-message">{{ passwordError }}</div>
 
       <label for="confirmPassword" class="form-label">Confirmar senha</label>
-      <input
-        type="text"
-        id="confirmPassword"
-        name="confirmPassword"
-        class="form-input"
-        [(ngModel)]="confirmPassword"
-        [value]="maskedConfirmPassword"
-        (input)="onConfirmPasswordInput($event)"
-        required
-      />
+      <input type="password" id="confirmPassword" name="confirmPassword" class="form-input" [(ngModel)]="confirmPassword" [ngClass]="{'error': confirmPasswordError}" required />
+      <div *ngIf="confirmPasswordError" class="error-message">{{ confirmPasswordError }}</div>
 
       <button type="submit" class="submit-button">Cadastrar</button>
     </form>
-    <div *ngIf="registrationError" class="error-message">{{ registrationError }}</div>
   </div>
 
   <div class="register-text">
@@ -54,9 +40,5 @@
   </div>
 </div>
 
-<app-alert 
-  *ngIf="showAlert" 
-  [showAlert]="showAlert" 
-  [alertMessage]="alertMessage" 
-  (close)="closeAlert()">
+<app-alert *ngIf="showAlert" [showAlert]="showAlert" [alertMessage]="alertMessage" (close)="closeAlert()">
 </app-alert>

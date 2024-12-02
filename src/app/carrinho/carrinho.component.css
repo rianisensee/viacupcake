@@ -362,6 +362,10 @@ html {
     margin-right: 25px;
 }
 
+.address-input.error {
+    border-color: #a02931;
+}
+
 .additional-info-container {
     display: flex;
     align-items: center;
@@ -397,6 +401,8 @@ html {
     align-items: center;
     position: fixed;
     bottom: 0;
+    left: 0;
+    right: 0;
     width: 100%;
     background-color: #7baabe;
     padding: 10px;
@@ -412,7 +418,12 @@ html {
     background-color: rgba(227, 223, 198, 0.5);
     border-radius: 8px;
     padding: 5px 14px;
-    flex: 1;
+    flex: 1 1 auto;
+    margin-right: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 50%;
 }
 
 .finalize-button {
@@ -424,9 +435,10 @@ html {
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    margin-left: 10px;
-    flex: 1;
+    flex: 0 0 auto;
     filter: drop-shadow(1.4px 1.4px 0px black);
+    white-space: nowrap;
+    width: 48%;
 }
 
 .error-message {

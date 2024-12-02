@@ -19,4 +19,5 @@ export const appRoutes: Routes = [
   { path: 'carrinho', component: CarrinhoComponent },
   { path: 'conta', component: ContaComponent },
   { path: 'compra', component: CompraComponent },
+  { path: '**', redirectTo: '' }
 ];

@@ -1,54 +1,32 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../services/user.service';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, NavbarComponent],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
   email: string = '';
   password: string = '';
-  maskedPassword: string = '';
-  showPassword: boolean = false;
-  passwordTimeout: any;
   loginError: string = '';
 
-  constructor(private location: Location, private userService: UserService) {}
+  constructor(private location: Location, private userService: UserService, private router: Router) {}
 
   goBack(): void {
-    this.location.back();
-  }
-
-  onPasswordInput(event: Event): void {
-    clearTimeout(this.passwordTimeout);
-
-    const inputElement = event.target as HTMLInputElement;
-    const actualPassword = inputElement.value;
-
-    this.password = actualPassword;
-
-    if (this.password.length > 0) {
-      this.maskedPassword = '*'.repeat(this.password.length - 1) + this.password.slice(-1);
-    } else {
-      this.maskedPassword = '';
-    }
-
-    this.passwordTimeout = setTimeout(() => {
-      this.maskedPassword = '*'.repeat(this.password.length);
-    }, 750);
+    this.router.navigate(['/']);
   }
 
   onSubmit(): void {
-    const user = this.userService.findUserByEmail(this.email);
-    if (user && user.password === this.password) {
-      alert('Login realizado com sucesso!');
-      // Redirecionar para a página principal ou outra página
+    if (this.userService.authenticate(this.email, this.password)) {
+      this.router.navigate(['/protected-route']);
     } else {
       this.loginError = 'E-mail ou senha incorretos';
     }
