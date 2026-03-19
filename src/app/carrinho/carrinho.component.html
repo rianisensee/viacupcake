@@ -12,7 +12,7 @@
     </div>
     <div>
         <div *ngIf="itensCarrinho.length === 0" class="empty-cart-message">
-            <p>Seu carrinho está vazio. <br><a href="/" class="home-link">Clique aqui para adicionar cupcakes</a>.</p>
+            <p>Seu carrinho está vazio. <br><a href="/home" class="home-link">Clique aqui para adicionar cupcakes</a>.</p>
         </div>
         <div *ngIf="itensCarrinho.length > 0" class="carrinho-container">
             <ng-container *ngFor="let item of itensCarrinho">
